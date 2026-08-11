@@ -26,7 +26,7 @@
 
 ###
 
-<p align="left">I'm Hafizuddin from Borneo Island, planet Earth.<br><br>- 🔭 I’m currently a postgraduate student doing a 3-year course on System Engineering<br>- 📚 I enjoy learning on the applications of optimizing various types of systems.<br>- ⚡ In my free time I appreciate art, try to learn 3D modelling, make videos, and occasionally fly drones.<br><br>Here, you will find projects that i have indulged myself in. Get inspired, create, manipulate, spread positivity and don't hate.</p>
+<p align="left">I'm Hafizuddin from Borneo Island, planet Earth.<br><br>- 🔭 I’m currently a postgraduate student doing a 3-year course on System Engineering, currently on my 4th year.<br>- 📚 I enjoy learning on the applications of optimizing various types of systems.<br>- ⚡ In my free time I appreciate art, try to learn 3D modelling, make videos, and occasionally fly drones.<br><br>Here, you will find projects that i have indulged myself in. Get inspired, create, manipulate, spread positivity and don't hate.</p>
 
 ###
 
