@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Hafizuddin Maiddin</title>
+<meta name="description" content="Hafizuddin Maiddin: PhD researcher in battery prognostics, deep learning for sequential data, ESP32 automation and AutoMate products.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one narrow column read like a component datasheet (phone-first, since most visits come from an NFC tap). */
+:root {
+  --bg: #f2f4f6; --surface: #ffffff; --fg: #131a21; --muted: #5a6672; --line: #d5dce2;
+  --accent: #a4501d; --teal: #1b6b6f; --teal-bg: #e1efef; --amber: #8a5a00; --amber-bg: #f6ecd6;
+  --display: "Barlow Condensed", "Arial Narrow", system-ui, sans-serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0d1318; --surface: #141c23; --fg: #e5eaee; --muted: #94a1ad; --line: #26313b;
+  --accent: #e3895a; --teal: #6cc2c6; --teal-bg: #15302f; --amber: #e2b45c; --amber-bg: #33280f; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0d1318; --surface: #141c23; --fg: #e5eaee; --muted: #94a1ad; --line: #26313b;
+  --accent: #e3895a; --teal: #6cc2c6; --teal-bg: #15302f; --amber: #e2b45c; --amber-bg: #33280f; color-scheme: dark }
+
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--fg); font: 400 15px/1.6 var(--body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.wrap { max-width: 760px; margin: 0 auto; padding-block: 28px 56px; display: grid; gap: 40px }
+a { color: var(--accent); text-underline-offset: 3px }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-height: 1.05 }
+h2 { font-size: 15px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
+  display: flex; align-items: center; gap: 12px }
+h2::after { content: ""; flex: 1; height: 1px; background: var(--line) }
+h3 { font-size: 22px; font-weight: 600 }
+p { margin: 0 }
+.mono { font-family: var(--mono); font-size: 12.5px; letter-spacing: .02em }
+
+/* Header */
+header { display: grid; gap: 18px }
+.eyebrow { font-family: var(--mono); font-size: 12px; color: var(--muted); letter-spacing: .06em; text-transform: uppercase }
+h1 { font-size: clamp(44px, 11vw, 72px); font-weight: 700; letter-spacing: -.01em }
+.role { font-size: 17px; max-width: 60ch }
+.links { display: flex; flex-wrap: wrap; gap: 8px }
+.links a, .links button { font: 500 13px var(--body); color: var(--fg); background: var(--surface); border: 1px solid var(--line);
+  border-radius: 999px; padding: 7px 14px; text-decoration: none; cursor: pointer }
+.links a:hover, .links button:hover { border-color: var(--accent) }
+
+/* Spec table: the datasheet "absolute ratings" block */
+.spec { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: hidden }
+.spec th, .spec td { text-align: left; vertical-align: top; padding: 10px 14px; border-bottom: 1px solid var(--line) }
+.spec tr:last-child th, .spec tr:last-child td { border-bottom: 0 }
+.spec th { width: 34%; font: 500 12px var(--mono); color: var(--muted); text-transform: uppercase; letter-spacing: .05em }
+
+/* Degradation figure */
+figure { margin: 0; display: grid; gap: 8px }
+.curve { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px; overflow-x: auto }
+.curve svg { display: block; width: 100%; min-width: 300px; height: auto }
+figcaption { font-size: 12.5px; color: var(--muted) }
+
+/* Projects */
+.jump { display: flex; flex-wrap: wrap; gap: 6px }
+.jump a { font: 500 12px var(--mono); text-decoration: none; color: var(--muted); border: 1px dashed var(--line); border-radius: 6px; padding: 4px 9px }
+.jump a:hover { color: var(--accent); border-color: var(--accent) }
+.group { display: grid; gap: 14px; scroll-margin-top: 16px }
+.group > p { color: var(--muted); max-width: 62ch }
+.cards { display: grid; gap: 12px }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; display: grid; gap: 8px; min-width: 0 }
+.card-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap }
+.card h4 { margin: 0; font: 600 16px/1.3 var(--body) }
+.card ul { margin: 0; padding-left: 18px; display: grid; gap: 4px }
+.tags { display: flex; flex-wrap: wrap; gap: 6px }
+.tags span { font: 400 11.5px var(--mono); color: var(--muted); background: var(--bg); border-radius: 4px; padding: 2px 7px }
+.pill { font: 500 11px var(--mono); text-transform: uppercase; letter-spacing: .06em; padding: 3px 8px; border-radius: 999px; white-space: nowrap }
+.pill.live { color: var(--teal); background: var(--teal-bg) }
+.pill.dev { color: var(--amber); background: var(--amber-bg) }
+.pill.done { color: var(--muted); background: var(--bg); border: 1px solid var(--line) }
+
+/* Timeline */
+.timeline { display: grid; gap: 0; border-left: 1px solid var(--line); margin-left: 4px }
+.entry { position: relative; padding: 0 0 22px 20px; display: grid; gap: 4px }
+.entry:last-child { padding-bottom: 0 }
+.entry::before { content: ""; position: absolute; left: -5px; top: 7px; width: 9px; height: 9px; border-radius: 50%; background: var(--bg); border: 2px solid var(--accent) }
+.entry .when { font: 500 12px var(--mono); color: var(--muted); font-variant-numeric: tabular-nums }
+.entry h4 { margin: 0; font: 600 16px/1.35 var(--body) }
+.entry h4 span { font-weight: 400; color: var(--muted) }
+.entry ul { margin: 2px 0 0; padding-left: 18px; display: grid; gap: 3px }
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px }
+.list { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px }
+.list li { display: grid; gap: 1px }
+.list .sub { color: var(--muted); font-size: 13.5px }
+@media (min-width: 640px) { .cards.duo { grid-template-columns: 1fr 1fr } }
+@media (prefers-reduced-motion: no-preference) { .fade path.trace { stroke-dasharray: 900; stroke-dashoffset: 900; animation: draw 1.6s ease-out .2s forwards } }
+@keyframes draw { to { stroke-dashoffset: 0 } }
+</style>
+<style>body{margin:0}</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<header>
+  <span class="eyebrow">PhD researcher · Systems Engineering · Brunei Darussalam</span>
+  <h1>Hafizuddin Maiddin</h1>
+  <p class="role">Experienced in crafting optimized systems across many fields, from design to deployed automation. Hardware, code and machine learning, combined so the work runs on its own. ESP32 and Raspberry Pi devices that take over repetitive work. Deep learning models that learn from sequential and time-series data to forecast, flag anomalies and support decisions. Every build is made to run reliably, day after day. Background in renewable energy, power electronics and ESG analysis.</p>
+  <div class="links">
+    <button type="button" id="copy-email" data-email="hafizmaiddin@gmail.com">hafizmaiddin@gmail.com</button>
+    <a href="https://github.com/whoishafiz" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://www.linkedin.com/in/whoishafiz/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://whizworks.gumroad.com" target="_blank" rel="noopener">Whiz Works</a>
+  </div>
+</header>
+
+<section class="group" aria-labelledby="h-edu">
+  <h2 id="h-edu">Education</h2>
+  <ul class="list">
+    <li><strong>PhD, Systems Engineering</strong><span class="sub">Universiti Brunei Darussalam · Jan 2023 – present</span></li>
+    <li><strong>MSc, Renewable and Sustainable Energy Technologies</strong><span class="sub">Northumbria University · 2019 – 2021 · Commendation</span></li>
+    <li><strong>BSc (Hons), Electrical and Electronics Engineering</strong><span class="sub">Newcastle University · 2015 – 2018 · Second Class Upper (2:1)</span></li>
+    <li><strong>International Foundation, Physical Sciences and Engineering</strong><span class="sub">INTO Newcastle University · 2014 – 2015</span></li>
+  </ul>
+</section>
+
+<section class="group" aria-labelledby="h-skills">
+  <h2 id="h-skills">Skills</h2>
+  <table class="spec" aria-label="Skills">
+    <tr><th>Embedded</th><td>ESP32 / ESP32-S3 firmware in ESP-IDF (C, C++) · M5Stack (Cardputer, Atom, AtomS3) · Raspberry Pi · ESP-NOW device links with signed over-the-air updates · captive-portal web apps · NFC (NTAG215) · mbed</td></tr>
+    <tr><th>Machine learning</th><td>TensorFlow / Keras (LSTM, GRU, VAE) · Keras Tuner · leakage-safe time-series pipelines · multi-seed benchmarking · LLM fine-tuning (QLoRA, GGUF export) · reinforcement learning (PPO in MuJoCo)</td></tr>
+    <tr><th>Simulation &amp; 3D</th><td>MuJoCo · MATLAB Simulink · CFD thermal modelling · Python-scripted Blender modelling · resin 3D printing (mSLA) with print-ready part design</td></tr>
+    <tr><th>Web &amp; tooling</th><td>Python (Flask, SQLite) · Next.js / TypeScript · Cloudflare Workers · Web Serial browser flashers · Playwright testing · Git</td></tr>
+    <tr><th>Product &amp; media</th><td>Product launch on Gumroad · Remotion promo videos · text-to-speech voice pipelines (Piper) · technical build write-ups</td></tr>
+    <tr><th>Research</th><td>Journal manuscript preparation and peer-review revision · solar PV siting · ESG analysis</td></tr>
+  </table>
+</section>
+
+<section class="group" aria-labelledby="work">
+  <h2 id="work">Projects</h2>
+  <nav class="jump" aria-label="Project areas">
+    <a href="#dl">Deep learning</a><a href="#esp">Smart embedded systems</a><a href="#automate">AutoMate</a>
+  </nav>
+</section>
+
+<section class="group" id="dl" aria-labelledby="h-dl">
+  <h3 id="h-dl">Deep learning modelling</h3>
+  <p>Models for sequential and time-series data such as sensor logs, usage histories and process measurements. Every model is benchmarked fairly and every run can be reproduced.</p>
+  <div class="cards duo">
+    <article class="card">
+      <div class="card-top"><h4>Continual-learning model</h4><span class="pill dev">In development</span></div>
+      <ul>
+        <li>VAE plus GRU with a replay buffer, so the model keeps learning from new datasets without forgetting earlier ones.</li>
+        <li>Hyperband search with Keras Tuner on the project's own composite metric.</li>
+        <li>Designed to scale to dozens of datasets in a single model.</li>
+      </ul>
+      <div class="tags"><span>VAE</span><span>GRU</span><span>Replay buffer</span><span>Keras Tuner</span></div>
+    </article>
+    <article class="card">
+      <div class="card-top"><h4>Architecture benchmarking</h4><span class="pill done">Built</span></div>
+      <ul>
+        <li>Sweeps across network type, look-back window and training-set size, with every run repeated over five seeds.</li>
+        <li>Measures how the amount and quality of training data changes accuracy.</li>
+      </ul>
+      <div class="tags"><span>TensorFlow 2</span><span>GPU training</span><span>TensorBoard</span></div>
+    </article>
+  </div>
+</section>
+
+<section class="group" id="esp" aria-labelledby="h-esp">
+  <h3 id="h-esp">Smart embedded systems</h3>
+  <p>Microcontroller systems that switch real loads, including mains-side devices, with safety interlocks.</p>
+  <div class="cards">
+    <article class="card">
+      <div class="card-top"><h4>HYDR8: automated irrigation</h4><span class="pill live">Running</span></div>
+      <ul>
+        <li>ESP32 drives a solenoid valve on a schedule, with a fallback schedule stored on the device.</li>
+        <li>The valve only opens after a Shelly relay confirms the supply is on, which keeps low and high voltage apart around water.</li>
+        <li>Web dashboard with sensor history, and scheduling over ESP-NOW.</li>
+      </ul>
+      <div class="tags"><span>ESP-IDF</span><span>Shelly RPC</span><span>ESP-NOW</span><span>Solenoid valve</span></div>
+    </article>
+    <div class="cards duo">
+      <article class="card">
+        <div class="card-top"><h4>8SNS8 OS</h4><span class="pill done">Built</span></div>
+        <ul>
+          <li>Custom firmware for the M5Stack Cardputer ADV: USB microphone mode, serial file push to SD, offline LLM mode.</li>
+          <li>Doubles as a handheld hub for the other ESP32 devices on this page.</li>
+        </ul>
+        <div class="tags"><span>M5Stack</span><span>USB UAC2</span><span>C++</span></div>
+      </article>
+      <article class="card">
+        <div class="card-top"><h4>Dosing pump controller</h4><span class="pill done">Built</span></div>
+        <ul>
+          <li>Wi-Fi ESP32 controller for timed peristaltic dosing pumps.</li>
+          <li><a href="https://github.com/whoishafiz/DosingMachine" target="_blank" rel="noopener">Source on GitHub</a></li>
+        </ul>
+        <div class="tags"><span>ESP32</span><span>Wi-Fi</span><span>Pumps</span></div>
+      </article>
+    </div>
+    <article class="card">
+      <div class="card-top"><h4>SUM1.0</h4><span class="pill done">BSc project</span></div>
+      <ul><li>Built the circuit and firmware for a line-following motor car steered by a PID loop on an mbed microcontroller.</li>
+        <li><a href="https://www.youtube.com/watch?v=Ei-uAF5r2_k" target="_blank" rel="noopener">Watch it run</a></li></ul>
+      <div class="tags"><span>mbed</span><span>PID</span><span>Motor drive</span></div>
+    </article>
+  </div>
+</section>
+
+<section class="group" id="automate" aria-labelledby="h-automate">
+  <h3 id="h-automate">AutoMate · Whiz Works</h3>
+  <p>An independent line of flash-it-yourself ESP32 products, numbered in launch order as AutoMate Vol.1: Low Power Apps (LPA). Each one runs as a Wi-Fi hotspot with a phone web app, so it needs no app install and no cloud account.</p>
+  <div class="cards">
+    <article class="card">
+      <div class="card-top"><h4>LPA-01 · Digital Front: offline storefront</h4><span class="pill live">On sale</span></div>
+      <ul>
+        <li>A storefront and back office for small businesses that opens on a customer's phone as soon as they join the shop's Wi-Fi. No internet connection needed.</li>
+        <li>Inventory management, product display, live orders and operational controls, branded to the business.</li>
+        <li><a href="https://whizworks.gumroad.com/l/ejarzu" target="_blank" rel="noopener">Product page</a> · <a href="https://whoishafiz.github.io/DigitalFront/install.html" target="_blank" rel="noopener">Web flasher</a></li>
+      </ul>
+      <div class="tags"><span>Captive portal</span><span>Inventory</span><span>Licensed firmware</span></div>
+    </article>
+    <article class="card">
+      <div class="card-top"><h4>LPA-02 · E-G.O.Cache: digital geocache logbook</h4><span class="pill live">On sale</span></div>
+      <ul>
+        <li>A geocache that finders sign from their phone instead of a paper log.</li>
+        <li>Flashed from the browser, with license checks through a Cloudflare Worker.</li>
+        <li><a href="https://whizworks.gumroad.com/l/qtcjj" target="_blank" rel="noopener">Product page</a> · <a href="https://whoishafiz.github.io/E-G.O.-Cache/install.html" target="_blank" rel="noopener">Web flasher</a></li>
+      </ul>
+      <div class="tags"><span>Captive portal</span><span>Web Serial</span><span>Cloudflare Workers</span></div>
+    </article>
+    <div class="cards duo">
+      <article class="card">
+        <div class="card-top"><h4>LPA-03 · Wireless Arcade</h4><span class="pill live">On sale</span></div>
+        <ul><li>Eight retro-style games served from the device to any phone that joins its Wi-Fi, with high scores saved on the device.</li>
+          <li><a href="https://whizworks.gumroad.com/l/twedq" target="_blank" rel="noopener">Product page</a> · <a href="https://whoishafiz.github.io/Wireless_Arcade/install.html" target="_blank" rel="noopener">Web flasher</a></li></ul>
+        <div class="tags"><span>JS games</span><span>NVS</span></div>
+      </article>
+      <article class="card">
+        <div class="card-top"><h4>LPA-04 · REAL-NEWS</h4><span class="pill dev">In development</span></div>
+        <ul><li>News feed and world hazard map (earthquakes, wildfires, floods from USGS, NASA EONET and GDACS) running entirely on the device.</li></ul>
+        <div class="tags"><span>Canvas map</span><span>Open data</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="group" aria-labelledby="h-earlier">
+  <h2 id="h-earlier">Earlier research</h2>
+  <div class="cards">
+    <article class="card">
+      <div class="card-top"><h4>Volume-Time Equivalence: sonoluminescence bubble collapse</h4><span class="pill dev">Paper draft</span></div>
+      <ul>
+        <li>Derives a volume–energy relation from mass–energy equivalence by writing mass as density × volume and the speed term as wavelength × frequency. The result is dimensionally consistent.</li>
+        <li>Tested against Keller–Miksis bubble-dynamics simulations, sweeping drive pressure, frequency, starting radius and gas to check that the predicted collapse timescale tracks the simulated one.</li>
+        <li>Maps where the relation applies: it holds where a volume truly collapses under an independently sourced energy, and reduces to an identity for linear oscillators.</li>
+      </ul>
+      <div class="tags"><span>Python</span><span>ODE simulation</span><span>Bubble dynamics</span><span>Dimensional analysis</span></div>
+    </article>
+    <div class="cards duo">
+    <article class="card">
+      <div class="card-top"><h4>Solar PV cooling for tropical climates</h4><span class="pill done">MSc thesis</span></div>
+      <p>3D model and CFD simulation comparing active and passive cooling for solar panels, measured by thermal performance under tropical conditions.</p>
+    </article>
+    <article class="card">
+      <div class="card-top"><h4>Direct-drive wave energy converter</h4><span class="pill done">BSc dissertation</span></div>
+      <p>Free-floating point absorber modelled as an RLC circuit (V = IR maps to F = ma) and tested in MATLAB Simulink across wave conditions.</p>
+    </article>
+  </div>
+  </div>
+</section>
+
+</div>
+
+<script>
+(() => {
+  const btn = document.getElementById("copy-email");
+  const email = btn.dataset.email;
+  btn.addEventListener("click", () => {
+    const done = () => { btn.textContent = "Email copied"; setTimeout(() => { btn.textContent = email; }, 1600); };
+    const fallback = () => { const r = document.createRange(); r.selectNodeContents(btn); const s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+    try { navigator.clipboard.writeText(email).then(done, fallback); } catch (e) { fallback(); }
+  });
+})();
+</script>
+</body>
+</html>
