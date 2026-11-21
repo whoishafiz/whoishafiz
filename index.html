@@ -3,32 +3,46 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="darkreader-lock">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f2f4f6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0d1318" media="(prefers-color-scheme: dark)">
 <title>Hafizuddin Maiddin</title>
 <meta name="description" content="Hafizuddin Maiddin: PhD researcher in battery prognostics, deep learning for sequential data, ESP32 automation and AutoMate products.">
+<meta property="og:title" content="Hafizuddin Maiddin">
+<meta property="og:description" content="PhD researcher in battery prognostics and deep learning for time-series data. Builder of ESP32 automation and the AutoMate product line.">
+<meta property="og:type" content="profile">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: one narrow column read like a component datasheet (phone-first, since most visits come from an NFC tap). */
+/* Design: a technical datasheet, phone-first (most visits come from an NFC tap). Theme: auto, or forced via the toggle (data-theme). */
 :root {
-  --bg: #f2f4f6; --surface: #ffffff; --fg: #131a21; --muted: #5a6672; --line: #d5dce2;
-  --accent: #a4501d; --teal: #1b6b6f; --teal-bg: #e1efef; --amber: #8a5a00; --amber-bg: #f6ecd6;
+  --bg: #f2f4f6; --surface: #ffffff; --surface-2: #f8fafb; --fg: #131a21; --muted: #5a6672; --line: #d5dce2;
+  --accent: #a4501d; --accent-soft: #f6e7dc; --teal: #1b6b6f; --teal-bg: #e1efef; --amber: #8a5a00; --amber-bg: #f6ecd6;
+  --shadow: 0 1px 2px rgba(19,26,33,.05), 0 8px 24px -12px rgba(19,26,33,.18);
   --display: "Barlow Condensed", "Arial Narrow", system-ui, sans-serif;
   --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+  --radius: 12px;
 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
-  --bg: #0d1318; --surface: #141c23; --fg: #e5eaee; --muted: #94a1ad; --line: #26313b;
-  --accent: #e3895a; --teal: #6cc2c6; --teal-bg: #15302f; --amber: #e2b45c; --amber-bg: #33280f; color-scheme: dark } }
+  --bg: #0d1318; --surface: #141c23; --surface-2: #11181e; --fg: #e5eaee; --muted: #94a1ad; --line: #26313b;
+  --accent: #e3895a; --accent-soft: #2c1a10; --teal: #6cc2c6; --teal-bg: #15302f; --amber: #e2b45c; --amber-bg: #33280f;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px -14px rgba(0,0,0,.7); color-scheme: dark } }
 :root[data-theme="dark"] {
-  --bg: #0d1318; --surface: #141c23; --fg: #e5eaee; --muted: #94a1ad; --line: #26313b;
-  --accent: #e3895a; --teal: #6cc2c6; --teal-bg: #15302f; --amber: #e2b45c; --amber-bg: #33280f; color-scheme: dark }
+  --bg: #0d1318; --surface: #141c23; --surface-2: #11181e; --fg: #e5eaee; --muted: #94a1ad; --line: #26313b;
+  --accent: #e3895a; --accent-soft: #2c1a10; --teal: #6cc2c6; --teal-bg: #15302f; --amber: #e2b45c; --amber-bg: #33280f;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px -14px rgba(0,0,0,.7); color-scheme: dark }
+:root[data-theme="light"] { color-scheme: light }
 
 * { box-sizing: border-box }
-body { background: var(--bg); color: var(--fg); font: 400 15px/1.6 var(--body);
-  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
-.wrap { max-width: 760px; margin: 0 auto; padding-block: 28px 56px; display: grid; gap: 40px }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; touch-action: manipulation }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto } }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 400 15px/1.6 var(--body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)) }
+.wrap { max-width: 760px; margin: 0 auto; padding-block: 20px 56px; display: grid; gap: 44px }
 a { color: var(--accent); text-underline-offset: 3px }
-a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px }
 h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-height: 1.05 }
 h2 { font-size: 15px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
   display: flex; align-items: center; gap: 12px }
@@ -36,37 +50,78 @@ h2::after { content: ""; flex: 1; height: 1px; background: var(--line) }
 h3 { font-size: 22px; font-weight: 600 }
 p { margin: 0 }
 .mono { font-family: var(--mono); font-size: 12.5px; letter-spacing: .02em }
+.skip { position: absolute; left: -999px } .skip:focus { left: 16px; top: 8px; z-index: 30; background: var(--surface); padding: 6px 10px }
+
+/* Top bar: sticky, translucent; section links scroll horizontally on small screens */
+.topbar { position: sticky; top: 0; z-index: 20; margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px)));
+  background: color-mix(in srgb, var(--bg) 82%, transparent); backdrop-filter: saturate(1.4) blur(10px); -webkit-backdrop-filter: saturate(1.4) blur(10px);
+  border-bottom: 1px solid var(--line) }
+.topbar-in { max-width: 792px; margin: 0 auto; padding: 8px 16px; display: flex; align-items: center; gap: 12px }
+.mark { font: 700 18px/1 var(--display); letter-spacing: .04em; color: var(--fg); text-decoration: none; padding: 6px 8px;
+  border: 1.5px solid var(--fg); border-radius: 7px }
+.nav { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; flex: 1 }
+.nav::-webkit-scrollbar { display: none }
+.nav a { font: 500 12.5px var(--mono); color: var(--muted); text-decoration: none; padding: 6px 9px; border-radius: 6px; white-space: nowrap }
+.nav a:hover, .nav a.on { color: var(--fg); background: var(--surface) }
+.theme { font: 500 12px var(--mono); color: var(--muted); background: var(--surface); border: 1px solid var(--line); border-radius: 999px;
+  padding: 5px 11px; cursor: pointer; white-space: nowrap }
+.theme:hover { color: var(--fg); border-color: var(--accent) }
 
 /* Header */
-header { display: grid; gap: 18px }
+header { display: grid; gap: 18px; padding-top: 12px }
 .eyebrow { font-family: var(--mono); font-size: 12px; color: var(--muted); letter-spacing: .06em; text-transform: uppercase }
-h1 { font-size: clamp(44px, 11vw, 72px); font-weight: 700; letter-spacing: -.01em }
-.role { font-size: 17px; max-width: 60ch }
+h1 { font-size: clamp(46px, 12vw, 78px); font-weight: 700; letter-spacing: -.01em }
+h1 span { color: var(--accent) }
+.role { font-size: 17px; max-width: 62ch }
+.now { display: grid; gap: 8px; background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent);
+  border-radius: var(--radius); padding: 12px 16px; box-shadow: var(--shadow) }
+.now b { font: 600 11px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--accent) }
+.now ul { margin: 0; padding-left: 18px; display: grid; gap: 2px }
 .links { display: flex; flex-wrap: wrap; gap: 8px }
 .links a, .links button { font: 500 13px var(--body); color: var(--fg); background: var(--surface); border: 1px solid var(--line);
   border-radius: 999px; padding: 7px 14px; text-decoration: none; cursor: pointer }
 .links a:hover, .links button:hover { border-color: var(--accent) }
+.links .primary { background: var(--fg); color: var(--bg); border-color: var(--fg) }
+
+/* Stat tiles */
+.stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px }
+@media (min-width: 620px) { .stats { grid-template-columns: repeat(4, 1fr) } }
+.stat { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px; display: grid; gap: 2px }
+.stat strong { font: 700 30px/1 var(--display) }
+.stat span { font-size: 12.5px; color: var(--muted); line-height: 1.35 }
 
 /* Spec table: the datasheet "absolute ratings" block */
-.spec { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: hidden }
+.spec { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden }
 .spec th, .spec td { text-align: left; vertical-align: top; padding: 10px 14px; border-bottom: 1px solid var(--line) }
 .spec tr:last-child th, .spec tr:last-child td { border-bottom: 0 }
 .spec th { width: 34%; font: 500 12px var(--mono); color: var(--muted); text-transform: uppercase; letter-spacing: .05em }
 
-/* Degradation figure */
+/* Figures (PhD timeline) */
 figure { margin: 0; display: grid; gap: 8px }
-.curve { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px; overflow-x: auto }
+.curve { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px; overflow-x: auto; box-shadow: var(--shadow) }
 .curve svg { display: block; width: 100%; min-width: 300px; height: auto }
 figcaption { font-size: 12.5px; color: var(--muted) }
 
+/* Publications */
+.pubs { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px }
+.pub { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 18px; display: grid; gap: 6px }
+.pub .title { font: 600 16px/1.35 var(--body) }
+.pub .meta { font-size: 13.5px; color: var(--muted) }
+.pub .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center }
+
 /* Projects */
-.jump { display: flex; flex-wrap: wrap; gap: 6px }
-.jump a { font: 500 12px var(--mono); text-decoration: none; color: var(--muted); border: 1px dashed var(--line); border-radius: 6px; padding: 4px 9px }
-.jump a:hover { color: var(--accent); border-color: var(--accent) }
-.group { display: grid; gap: 14px; scroll-margin-top: 16px }
+.filters { display: flex; flex-wrap: wrap; gap: 6px }
+.filters button { font: 500 12px var(--mono); color: var(--muted); background: transparent; border: 1px dashed var(--line); border-radius: 6px; padding: 5px 10px; cursor: pointer }
+.filters button:hover { color: var(--accent); border-color: var(--accent) }
+.filters button[aria-pressed="true"] { color: var(--bg); background: var(--fg); border: 1px solid var(--fg) }
+.group { display: grid; gap: 14px; scroll-margin-top: 64px }
 .group > p { color: var(--muted); max-width: 62ch }
+.group[hidden] { display: none }
 .cards { display: grid; gap: 12px }
-.card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; display: grid; gap: 8px; min-width: 0 }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; display: grid; gap: 8px; min-width: 0;
+  transition: border-color .2s, box-shadow .2s, transform .2s }
+.card:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); box-shadow: var(--shadow) }
+@media (prefers-reduced-motion: no-preference) { .card:hover { transform: translateY(-1px) } }
 .card-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap }
 .card h4 { margin: 0; font: 600 16px/1.3 var(--body) }
 .card ul { margin: 0; padding-left: 18px; display: grid; gap: 4px }
@@ -76,51 +131,63 @@ figcaption { font-size: 12.5px; color: var(--muted) }
 .pill.live { color: var(--teal); background: var(--teal-bg) }
 .pill.dev { color: var(--amber); background: var(--amber-bg) }
 .pill.done { color: var(--muted); background: var(--bg); border: 1px solid var(--line) }
-
-/* Timeline */
-.timeline { display: grid; gap: 0; border-left: 1px solid var(--line); margin-left: 4px }
-.entry { position: relative; padding: 0 0 22px 20px; display: grid; gap: 4px }
-.entry:last-child { padding-bottom: 0 }
-.entry::before { content: ""; position: absolute; left: -5px; top: 7px; width: 9px; height: 9px; border-radius: 50%; background: var(--bg); border: 2px solid var(--accent) }
-.entry .when { font: 500 12px var(--mono); color: var(--muted); font-variant-numeric: tabular-nums }
-.entry h4 { margin: 0; font: 600 16px/1.35 var(--body) }
-.entry h4 span { font-weight: 400; color: var(--muted) }
-.entry ul { margin: 2px 0 0; padding-left: 18px; display: grid; gap: 3px }
-.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px }
+.pill.pub { color: var(--accent); background: var(--accent-soft) }
 .list { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px }
-.list li { display: grid; gap: 1px }
+.list li { display: grid; gap: 1px; padding-left: 14px; border-left: 2px solid var(--line) }
+.list li:first-child { border-left-color: var(--accent) }
 .list .sub { color: var(--muted); font-size: 13.5px }
 @media (min-width: 640px) { .cards.duo { grid-template-columns: 1fr 1fr } }
-@media (prefers-reduced-motion: no-preference) { .fade path.trace { stroke-dasharray: 900; stroke-dashoffset: 900; animation: draw 1.6s ease-out .2s forwards } }
-@keyframes draw { to { stroke-dashoffset: 0 } }
+
+/* Reveal on scroll (only when motion is welcome and JS runs) */
+@media (prefers-reduced-motion: no-preference) {
+  .js .reveal { opacity: 0; transform: translateY(10px); transition: opacity .5s ease, transform .5s ease }
+  .js .reveal.in { opacity: 1; transform: none }
+}
+footer { border-top: 1px solid var(--line); padding-top: 18px; display: grid; gap: 6px; color: var(--muted); font-size: 13px }
 </style>
-<style>body{margin:0}</style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
-<div class="wrap">
+<div class="topbar">
+  <div class="topbar-in">
+    <a class="mark" href="#top" aria-label="Back to top">HM</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#phd">Timeline</a><a href="#pubs">Publications</a><a href="#work">Projects</a><a href="#h-skills">Skills</a><a href="#h-edu">Education</a>
+    </nav>
+    <button type="button" class="theme" id="theme" aria-label="Colour theme">Auto</button>
+  </div>
+</div>
 
-<header>
+<div class="wrap" id="top">
+
+<header class="reveal">
   <span class="eyebrow">PhD researcher · Systems Engineering · Brunei Darussalam</span>
-  <h1>Hafizuddin Maiddin</h1>
+  <h1>Hafizuddin <span>Maiddin</span></h1>
   <p class="role">Experienced in crafting optimized systems across many fields, from design to deployed automation. Hardware, code and machine learning, combined so the work runs on its own. ESP32 and Raspberry Pi devices that take over repetitive work. Deep learning models that learn from sequential and time-series data to forecast, flag anomalies and support decisions. Every build is made to run reliably, day after day. Background in renewable energy, power electronics and ESG analysis.</p>
+  <div class="now" aria-label="Current work">
+    <b>Now</b>
+    <ul>
+      <li>Final-year PhD: revising a battery-prognostics journal article and writing up the thesis.</li>
+      <li>Building AutoMate Vol.1: three ESP32 products on sale, the fourth in development.</li>
+    </ul>
+  </div>
   <div class="links">
-    <button type="button" id="copy-email" data-email="hafizmaiddin@gmail.com">hafizmaiddin@gmail.com</button>
+    <button type="button" id="copy-email" class="primary" data-email="hafizmaiddin@gmail.com">hafizmaiddin@gmail.com</button>
     <a href="https://github.com/whoishafiz" target="_blank" rel="noopener">GitHub</a>
     <a href="https://www.linkedin.com/in/whoishafiz/" target="_blank" rel="noopener">LinkedIn</a>
     <a href="https://whizworks.gumroad.com" target="_blank" rel="noopener">Whiz Works</a>
   </div>
 </header>
 
-<section class="group" aria-labelledby="h-edu">
-  <h2 id="h-edu">Education</h2>
-  <ul class="list">
-    <li><strong>PhD, Systems Engineering</strong><span class="sub">Universiti Brunei Darussalam · Jan 2023 – present</span></li>
-    <li><strong>MSc, Renewable and Sustainable Energy Technologies</strong><span class="sub">Northumbria University · 2019 – 2021 · Commendation</span></li>
-    <li><strong>BSc (Hons), Electrical and Electronics Engineering</strong><span class="sub">Newcastle University · 2015 – 2018 · Second Class Upper (2:1)</span></li>
-    <li><strong>International Foundation, Physical Sciences and Engineering</strong><span class="sub">INTO Newcastle University · 2014 – 2015</span></li>
-  </ul>
+<section class="stats reveal" aria-label="At a glance">
+  <div class="stat"><strong>1</strong><span>conference paper published (IOP JPCS)</span></div>
+  <div class="stat"><strong>1</strong><span>journal article under review</span></div>
+  <div class="stat"><strong>3</strong><span>ESP32 products on sale</span></div>
+  <div class="stat"><strong>4</strong><span>professional certificates in ML &amp; data</span></div>
 </section>
+
+<main id="main" class="wrap" style="padding:0;gap:44px">
 
 <!-- PHD-GANTT:START (generated by Magic Dashboard scripts/export_public_gantt.py; edit there, not here) -->
 <section class="group" id="phd" aria-labelledby="h-phd">
@@ -143,26 +210,40 @@ figcaption { font-size: 12.5px; color: var(--muted) }
 </section>
 <!-- PHD-GANTT:END -->
 
-<section class="group" aria-labelledby="h-skills">
-  <h2 id="h-skills">Skills</h2>
-  <table class="spec" aria-label="Skills">
-    <tr><th>Embedded</th><td>ESP32 / ESP32-S3 firmware in ESP-IDF (C, C++) · M5Stack (Cardputer, Atom, AtomS3) · Raspberry Pi · ESP-NOW device links with signed over-the-air updates · captive-portal web apps · NFC (NTAG215) · mbed</td></tr>
-    <tr><th>Machine learning</th><td>TensorFlow / Keras (LSTM, GRU, VAE) · Keras Tuner · leakage-safe time-series pipelines · multi-seed benchmarking · LLM fine-tuning (QLoRA, GGUF export) · reinforcement learning (PPO in MuJoCo)</td></tr>
-    <tr><th>Simulation &amp; 3D</th><td>MuJoCo · MATLAB Simulink · CFD thermal modelling · Python-scripted Blender modelling · resin 3D printing (mSLA) with print-ready part design</td></tr>
-    <tr><th>Web &amp; tooling</th><td>Python (Flask, SQLite) · Next.js / TypeScript · Cloudflare Workers · Web Serial browser flashers · Playwright testing · Git</td></tr>
-    <tr><th>Product &amp; media</th><td>Product launch on Gumroad · Remotion promo videos · text-to-speech voice pipelines (Piper) · technical build write-ups</td></tr>
-    <tr><th>Research</th><td>Journal manuscript preparation and peer-review revision · solar PV siting · ESG analysis</td></tr>
-  </table>
+<section class="group reveal" id="pubs" aria-labelledby="h-pubs">
+  <h2 id="h-pubs">Publications</h2>
+  <ul class="pubs">
+    <li class="pub">
+      <div class="row"><span class="pill pub">Published</span><span class="mono">2024</span></div>
+      <span class="title">Enhancing Battery Prognostics Modelling with Digit Frequency Preprocessing Analysis</span>
+      <span class="meta">H. Maiddin, Dk H. Pg Hj Mohd Yassin, W. Caesarendra · <em>Journal of Physics: Conference Series</em> 2777, 012002 · presented at ICPEES 2024, Kuala Lumpur (Best Presenter)</span>
+      <a href="https://doi.org/10.1088/1742-6596/2777/1/012002" target="_blank" rel="noopener">doi:10.1088/1742-6596/2777/1/012002</a>
+    </li>
+    <li class="pub">
+      <div class="row"><span class="pill dev">Under review</span><span class="mono">2026</span></div>
+      <span class="title">Sequential Deep Learning Modeling Optimization for Battery Health Prognostics Prediction</span>
+      <span class="meta">H. Maiddin, W. Caesarendra, Dk H. Pg Hj Mohd Yassin, L. C. De Silva · journal article</span>
+    </li>
+    <li class="pub">
+      <div class="row"><span class="pill done">In preparation</span></div>
+      <span class="title">Review article on data-driven battery prognostics</span>
+      <span class="meta">Untitled draft</span>
+    </li>
+  </ul>
 </section>
 
-<section class="group" aria-labelledby="work">
+<section class="group reveal" aria-labelledby="work" id="projects">
   <h2 id="work">Projects</h2>
-  <nav class="jump" aria-label="Project areas">
-    <a href="#dl">Deep learning</a><a href="#esp">Smart embedded systems</a><a href="#automate">AutoMate</a>
-  </nav>
+  <div class="filters" role="group" aria-label="Filter projects">
+    <button type="button" data-filter="all" aria-pressed="true">All</button>
+    <button type="button" data-filter="dl" aria-pressed="false">Deep learning</button>
+    <button type="button" data-filter="esp" aria-pressed="false">Embedded systems</button>
+    <button type="button" data-filter="automate" aria-pressed="false">AutoMate</button>
+    <button type="button" data-filter="earlier" aria-pressed="false">Earlier research</button>
+  </div>
 </section>
 
-<section class="group" id="dl" aria-labelledby="h-dl">
+<section class="group reveal" id="dl" data-cat="dl" aria-labelledby="h-dl">
   <h3 id="h-dl">Deep learning modelling</h3>
   <p>Models for sequential and time-series data such as sensor logs, usage histories and process measurements. Every model is benchmarked fairly and every run can be reproduced.</p>
   <div class="cards duo">
@@ -186,7 +267,7 @@ figcaption { font-size: 12.5px; color: var(--muted) }
   </div>
 </section>
 
-<section class="group" id="esp" aria-labelledby="h-esp">
+<section class="group reveal" id="esp" data-cat="esp" aria-labelledby="h-esp">
   <h3 id="h-esp">Smart embedded systems</h3>
   <p>Microcontroller systems that switch real loads, including mains-side devices, with safety interlocks.</p>
   <div class="cards">
@@ -226,7 +307,7 @@ figcaption { font-size: 12.5px; color: var(--muted) }
   </div>
 </section>
 
-<section class="group" id="automate" aria-labelledby="h-automate">
+<section class="group reveal" id="automate" data-cat="automate" aria-labelledby="h-automate">
   <h3 id="h-automate">AutoMate · Whiz Works</h3>
   <p>An independent line of flash-it-yourself ESP32 products, numbered in launch order as AutoMate Vol.1: Low Power Apps (LPA). Each one runs as a Wi-Fi hotspot with a phone web app, so it needs no app install and no cloud account.</p>
   <div class="cards">
@@ -264,8 +345,8 @@ figcaption { font-size: 12.5px; color: var(--muted) }
   </div>
 </section>
 
-<section class="group" aria-labelledby="h-earlier">
-  <h2 id="h-earlier">Earlier research</h2>
+<section class="group reveal" id="earlier" data-cat="earlier" aria-labelledby="h-earlier">
+  <h3 id="h-earlier">Earlier research</h3>
   <div class="cards">
     <article class="card">
       <div class="card-top"><h4>Volume-Time Equivalence: sonoluminescence bubble collapse</h4><span class="pill dev">Paper draft</span></div>
@@ -289,10 +370,42 @@ figcaption { font-size: 12.5px; color: var(--muted) }
   </div>
 </section>
 
+<section class="group reveal" aria-labelledby="h-skills">
+  <h2 id="h-skills">Skills</h2>
+  <table class="spec" aria-label="Skills">
+    <tr><th>Embedded</th><td>ESP32 / ESP32-S3 firmware in ESP-IDF (C, C++) · M5Stack (Cardputer, Atom, AtomS3) · Raspberry Pi · ESP-NOW device links with signed over-the-air updates · captive-portal web apps · NFC (NTAG215) · mbed</td></tr>
+    <tr><th>Machine learning</th><td>TensorFlow / Keras (LSTM, GRU, VAE) · Keras Tuner · leakage-safe time-series pipelines · multi-seed benchmarking · LLM fine-tuning (QLoRA, GGUF export) · reinforcement learning (PPO in MuJoCo)</td></tr>
+    <tr><th>Simulation &amp; 3D</th><td>MuJoCo · MATLAB Simulink · CFD thermal modelling · Python-scripted Blender modelling · resin 3D printing (mSLA) with print-ready part design</td></tr>
+    <tr><th>Web &amp; tooling</th><td>Python (FastAPI, Flask, SQLite) · Next.js / TypeScript · hand-built SVG data visualisation (this page's timeline) · Cloudflare Workers · Web Serial browser flashers · Playwright testing · Git</td></tr>
+    <tr><th>Product &amp; media</th><td>Product launch on Gumroad · Remotion promo videos · text-to-speech voice pipelines (Piper) · technical build write-ups</td></tr>
+    <tr><th>Research</th><td>Journal manuscript preparation and peer-review revision · conference presentation (Best Presenter, ICPEES 2024) · solar PV siting · ESG analysis</td></tr>
+  </table>
+</section>
+
+<section class="group reveal" aria-labelledby="h-edu">
+  <h2 id="h-edu">Education</h2>
+  <ul class="list">
+    <li><strong>PhD, Systems Engineering</strong><span class="sub">Universiti Brunei Darussalam · Jan 2023 – present</span></li>
+    <li><strong>MSc, Renewable and Sustainable Energy Technologies</strong><span class="sub">Northumbria University · 2019 – 2021 · Commendation</span></li>
+    <li><strong>BSc (Hons), Electrical and Electronics Engineering</strong><span class="sub">Newcastle University · 2015 – 2018 · Second Class Upper (2:1)</span></li>
+    <li><strong>International Foundation, Physical Sciences and Engineering</strong><span class="sub">INTO Newcastle University · 2014 – 2015</span></li>
+  </ul>
+</section>
+
+</main>
+
+<footer>
+  <span>Hand-built HTML and CSS, no framework. The PhD timeline is generated from my own project-tracking dashboard.</span>
+  <span class="mono">© Hafizuddin Maiddin</span>
+</footer>
+
 </div>
 
 <script>
 (() => {
+  document.documentElement.classList.add("js");
+
+  // Email: copy to clipboard
   const btn = document.getElementById("copy-email");
   const email = btn.dataset.email;
   btn.addEventListener("click", () => {
@@ -300,6 +413,35 @@ figcaption { font-size: 12.5px; color: var(--muted) }
     const fallback = () => { const r = document.createRange(); r.selectNodeContents(btn); const s = getSelection(); s.removeAllRanges(); s.addRange(r); };
     try { navigator.clipboard.writeText(email).then(done, fallback); } catch (e) { fallback(); }
   });
+
+  // Theme: Auto -> Light -> Dark, remembered on this device
+  const root = document.documentElement, tbtn = document.getElementById("theme");
+  const MODES = ["auto", "light", "dark"], LABEL = { auto: "Auto", light: "Light", dark: "Dark" };
+  const apply = (m) => { if (m === "auto") delete root.dataset.theme; else root.dataset.theme = m; tbtn.textContent = LABEL[m]; };
+  let mode = "auto"; try { mode = localStorage.getItem("theme") || "auto"; } catch (e) {}
+  apply(mode);
+  tbtn.addEventListener("click", () => { mode = MODES[(MODES.indexOf(mode) + 1) % 3]; apply(mode); try { localStorage.setItem("theme", mode); } catch (e) {} });
+
+  // Project filters
+  const chips = document.querySelectorAll("[data-filter]"), groups = document.querySelectorAll("[data-cat]");
+  chips.forEach((c) => c.addEventListener("click", () => {
+    const f = c.dataset.filter;
+    chips.forEach((x) => x.setAttribute("aria-pressed", String(x === c)));
+    groups.forEach((g) => { g.hidden = f !== "all" && g.dataset.cat !== f; });
+  }));
+
+  // Reveal sections on scroll + highlight the current section in the top bar
+  const reveal = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { rootMargin: "0px 0px -8% 0px" });
+    reveal.forEach((el) => io.observe(el));
+    const links = [...document.querySelectorAll(".nav a")];
+    const spy = new IntersectionObserver((es) => es.forEach((e) => {
+      if (!e.isIntersecting) return;
+      links.forEach((a) => a.classList.toggle("on", a.getAttribute("href") === "#" + e.target.id));
+    }), { rootMargin: "-45% 0px -50% 0px" });
+    links.forEach((a) => { const t = document.querySelector(a.getAttribute("href")); if (t) spy.observe(t); });
+  } else { reveal.forEach((el) => el.classList.add("in")); }
 })();
 </script>
 </body>
